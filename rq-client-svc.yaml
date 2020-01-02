@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  name: rqlite-client-access
+  labels:
+    app: rqlite-clients
+spec:
+  ports:
+  - name: httpd
+    port: 4001
+    protocol: TCP
+    targetPort: 4001
+  selector:
+    clients: access
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

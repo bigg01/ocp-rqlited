@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  name: rq2
+  labels:
+    app: rq2
+spec:
+  ports:
+  - name: httpd
+    port: 4001
+    protocol: TCP
+    targetPort: 4001
+  - name: raft
+    port: 4002
+    protocol: TCP
+    targetPort: 4002
+  selector:
+    app: rq2
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
