@@ -264,7 +264,7 @@ leader: 172.30.34.141:4002 leader: 172.30.105.240:4002
 
 
 
-## issues
+## issues - solved after pod restart
 advertise adr vor API is using internal address with the cli
 
 ```sh
