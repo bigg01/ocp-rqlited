@@ -52,7 +52,7 @@ route.route.openshift.io/rqlite-client   rqlite-client-rqlite.apps-crc.testing  
 
 ## test rqlite connection
 ```sh
-./rqlite -H rqlite-clients-rqlite.apps-crc.testing -p 80
+./rqlite -H rqlite-client-rqlite.apps-crc.testing -p 80
 Welcome to the rqlite CLI. Enter ".help" for usage hints.
 rqlite-clients-rqlite.apps-crc.testing:80> .status
 runtime:

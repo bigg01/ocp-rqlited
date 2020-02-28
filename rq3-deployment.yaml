@@ -1,8 +1,6 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    deployment.kubernetes.io/revision: "3"
   creationTimestamp: null
   generation: 1
   labels:
@@ -26,12 +24,27 @@ spec:
       creationTimestamp: null
       labels:
         app: rq3
+        clients: access
     spec:
       containers:
       - name: rqlite
-        command: ['rqlited']
-        args: ['-http-addr', ':4001', '-raft-addr', ':4002', '-http-adv-addr', 'rq3:4001', '-raft-adv-addr', 'rq3:4002', '-join', 'http://rq1:4001', '/rqlite/file/data']
-        image: rqlite/rqlite
+        command:
+        - bash
+        - "-c"
+        - |
+          set -ex
+          /bin/rqlited -http-addr ${HOSTNAME}:4001 -raft-addr ${HOSTNAME}:4002 -join http://rq1:4001 -http-adv-addr rq3:4001 -raft-adv-addr rq3:4002 /rqlite/file/data
+        # readinessProbe:
+        #   tcpSocket:
+        #     port: 4001
+        #     initialDelaySeconds: 5
+        #     periodSeconds: 10
+          # livenessProbe:
+          #   tcpSocket:
+          #     port: 4001
+          #   initialDelaySeconds: 20
+          #   periodSeconds: 20
+        image: rqlite/rqlite:5.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 4001
