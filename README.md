@@ -5,6 +5,7 @@
  - adding auth
  - adding SSL
  - PR for dockerifle  https://github.com/rqlite/rqlite-docker
+ - maybe adapt like that: https://github.com/kubernetes/kubernetes/blob/master/test/e2e/testing-manifests/statefulset/etcd/statefulset.yaml
 
 # create objects
 ```sh
